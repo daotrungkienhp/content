@@ -1,9 +1,0 @@
-var express = require('express');
-var server = express.Router();
-
-server.get('/', function(req, res, next) {
-    res.json({ a: "Hello node" });
-});
-
-
-module.exports = server;

@@ -1,26 +1,32 @@
 {
-  "name": "app",
-  "version": "1.0.1",
-  "description": "Empty App",
-  "main": "app.js",
+  "name": "netlify-express",
+  "version": "0.0.1",
+  "description": "Example of how to deploy a Express.js Netlify app.",
+  "main": "functions/server.js",
   "scripts": {
-    "build": "npm install",
-    "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "netlify-lambda build express",
+    "start": "nodemon server-local.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://pm.letgo.biz/diffusion/84/empty-app.git"
+    "url": "git+https://github.com/neverendingqs/netlify-express.git"
   },
-  "author": "Team",
-  "license": "ISC",
-  "homepage": "",
-  "dependencies": {
-    "archiver": "^5.3.0",
-    "cors": "^2.8.5",
-    "express": "~4.16.1",
-    "jsdom": "^16.5.3",
-    "device-detector-js": "^3.0.0",
-    "odb": "git+https://dev:Ao02Sn&eLGUuUEqxyb8rbZ7twrJadnLlQRM@pm.letgo.biz/diffusion/82/odb.git"
+  "keywords": [
+    "netlify",
+    "express.js"
+  ],
+  "author": "neverendingqs",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/neverendingqs/netlify-express/issues"
+  },
+  "homepage": "https://github.com/neverendingqs/netlify-express#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "netlify-lambda": "^1.6.3",
+    "nodemon": "^1.19.2",
+    "serverless-http": "^2.3.0"
   }
 }
