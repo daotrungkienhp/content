@@ -1,0 +1,80 @@
+const express = require('express');
+const server = express.Router();
+const Router = require('router');
+
+var Detector = require("device-detector-js");
+const detector = new Detector();
+
+// server.get('/', function(req, res, next) {
+//     res.redirect('/index.html');
+// });
+
+server.get('/favicon.ico', function(req, res) {
+    res.send('Hello');
+});
+
+server.get('/*', (req, res, next) => {
+    var router = new Router(req.__session);
+    var uri = [req.hostname].concat(req._parsedUrl.pathname.split('/')).filter(Boolean);
+    var device = getDevice(req);
+
+    router.getFullPath(uri, device, (filePath) => {
+        var e404 = 'Sorry, we cannot find that!';
+
+        if (!filePath) {
+            return res.status(404).send(e404);
+        }
+
+        var options = {
+            // dotfiles: 'deny',
+            // headers: {
+            // 'x-timestamp': Date.now(),
+            // 'x-sent': true
+            // }
+        };
+        res.sendFile(filePath, options, function(err) {
+            if (err) {
+                next(err);
+                res.send(e404);
+            } else {
+                // console.log('Sent:', filePath);
+            }
+        });
+    });
+});
+
+function getDevice(req) {
+    var header = req.rawHeaders;
+    var index = header.indexOf('user-agent');
+    if (index === -1) {
+        index = header.indexOf('User-Agent');
+    }
+
+    var userAgent = header[index + 1];
+    var dv = detector.parse(userAgent);
+
+    // console.log('device', dv);
+
+    if (dv.device.type === 'mobile') {
+        return 'mobile';
+    }
+
+    return 'desktop';
+}
+
+module.exports = server;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//-----------------------
