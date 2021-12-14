@@ -1,0 +1,36 @@
+{% extends "default.njk" %}
+{% block body %}
+  <h1>
+    <a href="/">Home</a> |
+    {{title}}
+  </h1>
+  <div>
+    <b>Published:</b>
+    <time class="entry-time block md:inline" itemprop="datePublished" datetime="{{created}}">
+      {{created | formatDate}}
+    </time>
+  </div>
+  <div>
+    <b>By:</b>
+    {{author.name}} (<a href="mailto:author.email">{{author.email}}</a>)
+  </div>
+  <div>
+    <b>Category:</b>
+    {{category}}
+  </div>
+  {{content | safe}}
+  {% if tags %}
+    <div class="inline text-gray-400">
+      <span class="inline uppercase">Tagged with:</span>
+      {% for tag in tags %}
+        <span class="inline">
+          <a href="/tags/{{tag}}" class="text-gray-400 hover:text-gray-700">{{tag|unslugify}}</a>
+          {% if not loop.last %}//{% endif %}
+        </span>
+      {% endfor %}
+    </div>
+  {% endif %}
+  <div class="pt-4 text-gray-400">
+    <i>Last updated:{{modified | formatDate}}</i>
+  </div>
+{% endblock %}

@@ -1,22 +1,36 @@
-# Express.js on Netlify Example
+# kiss-starter: starter boilerplate for the kiss site generator
 
-[![Netlify
-Status](https://api.netlify.com/api/v1/badges/9aaef7de-1e5d-4fda-bc39-faa10a68b35b/deploy-status)](https://app.netlify.com/sites/netlify-express/deploys)
+## Installation
 
-[![Deploy to
-Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/neverendingqs/netlify-express)
+```shell
+# Clone this repo
+mkdir my-static-site
+cd my-static-site
+git clone https://github.com/slybridges/kiss-starter.git .
 
-An example of how to host an Express.js app on Netlify using
-[serverless-http](https://github.com/dougmoscrop/serverless-http). See
-[express/server.js](express/server.js) for details, or check it out at
-https://netlify-express.netlify.com/!
+# Remove history and start your own git repo
+rm -rf .git
+git init
 
-[index.html](index.html) simply loads html from the Express.js app using
-`<object>`, and the app is hosted at `/.netlify/functions/server`. Examples of
-how to access the Express.js endpoints:
+# Install dependencies
+npm install
+```
 
-```sh
-curl https://netlify-express.netlify.com/.netlify/functions/server
-curl https://netlify-express.netlify.com/.netlify/functions/server/another
-curl --header "Content-Type: application/json" --request POST --data '{"json":"POST"}' https://netlify-express.netlify.com/.netlify/functions/server
+## Start the development server
+
+```shell
+npm start
+```
+
+## Make it your own
+
+- Update `kiss.config.js` and `package.json`
+- Content sits in the `content/` directory
+- Design sits in the `theme/` directory
+- Generated site sits in the `public/` directory
+
+## Make a production build
+
+```shell
+NODE_ENV=production npm run build
 ```

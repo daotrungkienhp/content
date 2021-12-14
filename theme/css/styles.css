@@ -1,0 +1,43 @@
+/** This is a tailwind-inspired CSS, update as needed. **/
+
+.bg-gray-200 {
+  background-color: rgba(229, 231, 235, 1);
+}
+
+.container {
+  background-color: white;
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem;
+}
+
+.inline {
+  display: inline;
+}
+
+.lazy {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+.pt-4 {
+  padding-top: 1rem;
+}
+
+.pt-12 {
+  padding-top: 3rem;
+}
+
+.text-gray-400 {
+  color: rgba(156, 163, 175, 1);
+}
+
+.hover\:text-gray-700:hover {
+  color: rgba(55, 65, 81, 1);
+}
+
+.uppercase {
+  text-transform: uppercase;
+}

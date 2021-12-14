@@ -1,0 +1,21 @@
+{% extends "default.njk" %}
+
+{% block body %}
+  {% block header %}
+    <h1>
+      <a href="/">Home</a> |
+      {{title}}
+    </h1>
+  {% endblock %}
+  <ul>
+    {% for post in collection.allPosts %}
+      <li>
+        <a href="{{post.permalink}}">
+          <h3>{{post.title}}</h3>
+          <img src="{{post.image}}" alt="Cover image for {{post.title}}" style="width: 200px"/>
+        </a>
+        Published on {{post.created | formatDate("MMMM do, yyyy")}}
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

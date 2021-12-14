@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="{{site.locale | join('-')}}">
+  <head>
+    {% set full_title -%}
+    {%- if title -%}{{title}} | {{site.title}}
+    {%- else -%}{{site.title}}
+    {%- endif %}
+    {%- endset %}
+    <title>{{full_title}}</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Metadatas -->
+    <link rel="canonical" href="{{url}}"/>
+    <meta name="robots" content="index,follow"/>
+    <meta name="description" content="{{description | striptags}}"/>
+    <meta name="author" content="{{author.name}}"/>
+    <!-- Open Graph -->
+    <meta property="og:locale" content="{{site.locale | join('_')}}"/>
+    <meta property="og:description" content="{{description | striptags}}"/>
+    {% if image %}
+      <meta property="og:image:secure_url" content="{{site.url}}{{image}}"/>
+      <meta property="og:image" content="{{site.url}}{{image}}"/>
+    {% endif %}
+    <meta property="og:site_name" content="{{site.title}}"/>
+    <meta property="og:title" content="{{full_title}}"/>
+    <meta property="og:url" content="{{url}}"/>
+    {% if _meta.isPost %}
+      <meta property='og:type' content='article'/>
+      <meta property="article:section" content="{{category}}"/>
+      <meta property="article:published_time" content="{{created | formatDateISO}}"/>
+      <meta property="article:modified_time" content="{{created | formatDateISO}}"/>
+      {% for tag in tags %}
+        <meta property="article:tag" content="{{tag | unslugify }}"/>
+      {% endfor %}
+    {% elif permalink == "/" %}
+      <meta property="og:type" content="website"/>
+    {% else %}
+      <meta property="og:type" content="object"/>
+    {% endif %}
+    <!-- CSS -->
+    <link href="/css/styles.css" rel="stylesheet">
+    <!-- RSS -->
+    <link href="/feed.xml" rel="alternate" type="application/atom+xml" >
+    {% block head %}{% endblock %}
+  </head>
+  <body class="bg-gray-200">
+    <div class="container">
+      {% block body %}
+        {{content | safe}}
+      {% endblock %}
+      <footer class="pt-12">
+        <div>
+          &copy;
+          <a href="/" class="text-gray-400 hover:text-gray-700">{{site.title}}</a> |
+          <a href="https://github.com/slybridges/kiss" class="text-gray-400 hover:text-gray-700"   target="_blank" rel="noopener">Built with kiss 😚</a>.
+        </div>
+      </footer>
+    </div>
+    <script async src="/js/lazyload.min.js" onload="new LazyLoad({ use_native: true })"></script>
+  </body>
+</html>
